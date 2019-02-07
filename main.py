@@ -1,23 +1,21 @@
 """`main` is the top level module for your Bottle application."""
 
-# import the Bottle framework
-from bottle import Bottle
+# import the flask framework
+from flask import Flask, render_template, request
+import json
 
-# Create the Bottle WSGI application.
-bottle = Bottle()
-# Note: We don't need to call run() since our application is embedded within
-# the App Engine WSGI application server.
+filename = 'response.json'
 
-
-# Define an handler for the root URL of our application.
-@bottle.route('/')
-def hello():
-    """Return a friendly HTTP greeting."""
-    return 'Hello World'
+with open(filename, 'r') as f:
+    projects = json.load(f)
+app = Flask(__name__, static_folder='static', static_url_path='')
 
 
-# Define an handler for 404 errors.
-@bottle.error(404)
-def error_404(error):
-    """Return a custom 404 error."""
-    return 'Sorry, Nothing at this URL.'
+@app.route('/')
+def index():
+    return render_template('projects.html', projects=projects)
+
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
