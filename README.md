@@ -1,6 +1,6 @@
 # [massoth.tech](https://www.massoth.tech/)
 ## Code and resources of my personal website
-This is the repository containing most of the code that runs on my personal website, [massoth.tech](https://www.massoth.tech/).
+This is the repository containing most of the code that runs on my personal website, [massoth.tech](https://www.massoth.tech/). What you see in this repo under the `master` branch is what is currently running on my website. You can see what I am working on on the `develop` branch.
 ## Repository Structure
 In the base directory, general Google app-engine related files can be found. The main entry point, `main.py` can also be found here. The modules are located inside of the `app/` directory along with the templates and static files. 
 ## Installation and Running
