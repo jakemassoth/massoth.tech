@@ -8,6 +8,6 @@ def not_found(error):
     return render_template('404.html'), 404
 
 
-from app.mod_landing.controllers import mod_landing as landing_module
+from mod_landing.controllers import mod_landing as landing_module
 
 app.register_blueprint(landing_module)

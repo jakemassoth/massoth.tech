@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Software developer Jake Massoth's porfolio">
+  <meta name="description" content="Software developer Jake Massoth's website and blog">
   <meta name="author" content="Jake Massoth">
 
 
@@ -16,6 +16,7 @@
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
     crossorigin="anonymous"></script>
+  <script src="//instant.page/1.1.0" type="module" integrity="sha384-EwBObn5QAxP8f09iemwAJljc+sU+eUXeL9vSBw1eNmVarwhKk2F9vBEpaN9rsrtp"></script>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
     crossorigin="anonymous">
@@ -33,7 +34,7 @@
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/">Jake Massoth: Software Developer</a>
+      <a class="navbar-brand" href="/">Jake Massoth</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
         aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -54,16 +55,25 @@
       </div>
     </div>
   </nav>
-  {% block content %}
 
-  <div class="container">
-    {% block projects %}
-    {% endblock %}
-
-  </div>
-  <!-- Footer -->
+  {% block education %}
   {% endblock %}
+
+  {% block projects %}
+  {% endblock %}
+
+  <!-- Footer -->
   <hr>
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-md-8">
+        <h5>Like what you see?</h5>
+      </div>
+      <div class="col-md-4">
+        <a class="btn btn-lg btn-secondary btn-block" href="/static/resume.pdf">Download my Resume</a>
+      </div>
+    </div>
+  </div>
   <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Jake Massoth 2019</p>
