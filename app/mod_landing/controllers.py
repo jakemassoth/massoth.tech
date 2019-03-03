@@ -6,6 +6,8 @@ import requests
 # needed to get requests to run on GAE
 from requests_toolbelt.adapters import appengine
 
+# TODO: make the last commit more pretty
+
 
 @mod_landing.route('/')
 def index():
