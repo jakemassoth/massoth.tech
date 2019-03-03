@@ -19,7 +19,9 @@ def get_data():
     data = project_schema.dump(query).data
     return jsonify({"projects": data})
 
-
+# TODO: add validation of GAE cron header
+# TODO: add Github api rate limiting error handling
+# TODO: general error handling
 @mod_github.route('/run')
 def run_updater():
     """ an endpoint to update the github project database, only intended to run 60 times a day using the GAE cron interface, more than this will lead to being locked out by the github API. Deletes all rows in the table and then re-populates them with the new data"""
