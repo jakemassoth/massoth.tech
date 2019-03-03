@@ -1,13 +1,10 @@
-"""`main` is the top level module for your Bottle application."""
-
 # import the flask framework
-from flask import Blueprint, render_template, request
 import json
+from flask import render_template
+from . import mod_landing
+
 
 filename = 'response.json'
-
-mod_landing = Blueprint(
-    'mod_landing', __name__, url_prefix="/", template_folder='../templates')
 
 with open(filename, 'r') as f:
     projects = json.load(f)
