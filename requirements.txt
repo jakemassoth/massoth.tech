@@ -4,4 +4,9 @@ jinja2>=2.10
 Flask-SQLAlchemy>=2.3.2
 SQLAlchemy>=1.2.18
 pymysql
+flask-marshmallow
+marshmallow-sqlalchemy
+requests
+requests_toolbelt
+python-dateutil
 google-api-python-client
