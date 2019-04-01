@@ -8,5 +8,6 @@ flask-marshmallow
 marshmallow-sqlalchemy
 requests
 requests_toolbelt
-python-dateutil
+dateutil
+Babel
 google-api-python-client
