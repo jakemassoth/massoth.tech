@@ -2,7 +2,7 @@
 
 {% block content %}
 <hr>
-<div class="container">
+<div class="container" id="projects">
     <!-- Portfolio Section -->
     <h1>GitHub Projects</h1>
     <p>Here are my open-source projects. In fact, you are <a href="https://github.com/bluzomby/massoth.tech">looking at
@@ -30,7 +30,7 @@
                         <i class="fa fa-code-fork"></i>: {{ item['forks'] }}
                     </li>
                     <li class="list-group-item">
-                        Most Recent Commit: {{ item['last_commit'] }}
+                        Most Recent Commit: {{ item['last_commit']}}
                     </li>
                 </ul>
 
@@ -41,7 +41,7 @@
 </div>
 <!-- /.row -->
 <hr>
-<div class="container">
+<div class="container" id="education">
     <h1>Education</h1>
     <div class="row">
         <div class="col-md-4">
