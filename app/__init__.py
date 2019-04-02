@@ -18,7 +18,7 @@ def create_app():
             user=secrets.DB_NAME, password=secrets.DB_PASS,
             database=secrets.DB_NAME, connection_name=secrets.CLOUD_SQL_CONNECTION_NAME)
     # # dev database connection setup
-    app.config['SQLALCHEMY_DATABASE_URI'] = secrets.SQLALCHEMY_DATABASE_URI
+    app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
     db.init_app(app)
 
     ma.init_app(app)
