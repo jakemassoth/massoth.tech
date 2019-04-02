@@ -7,11 +7,18 @@ body {
   padding-top: 56px;
 }
 
+@media (min-width: 992px) {
+  body {
+    padding-top: 0;
+    padding-left: 17rem;
+  }
+}
+
 .portfolio-item {
   margin-bottom: 30px;
 }
 
-.business-card {
+#business-card {
   height: 100vh;
 }
 
