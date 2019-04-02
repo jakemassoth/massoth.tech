@@ -1,73 +1,114 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<hr>
-<div class="container" id="projects">
-    <!-- Portfolio Section -->
-    <h1>GitHub Projects</h1>
-    <p>Here are my open-source projects. In fact, you are <a href="https://github.com/bluzomby/massoth.tech">looking at
-            one</a> right now!</p>
+<section id="business-card">
+    <div class="container d-flex flex-column justify-content-center business-card">
+        <h1>Jake <span class="font-weight-bold">Massoth</span></h1>
+        <h2>Full-stack developer</h2>
+        <p class="pb-3">Hi, my name is Jake and I am an American Computer Science student. I have a passion for
+            well-built
+            software, projects that engage people and help them in their lives, and good coffee.</p>
+        <ul class="list-group list-group-flush pb-3">
+            <a href="mailto:jakemassoth16@gmail.com" class="list-group-item list-group-item-action"><i
+                    class="fas fa-envelope"></i> jakemassoth16@gmail.com</a>
+            <li class="list-group-item">
+                <i class="fas fa-compass"></i> Amsterdam, The Netherlands
+            </li>
+        </ul>
+        <div class="social-icons pl-4">
+            <a href="https://www.linkedin.com/in/jake-m-814441133/">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/bluzomby">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
 
-    <div class="row">
-        {% for item in projects %}
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="{{ item['url'] }}">{{ item['name'] }}</a>
-                    </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ item['language'] }}
-                    </h6>
-                    {% if item['description'] is not none %}
-                    <p class="card-text"> {{item['description'] }} </p>
-                    {% endif %}
+    </div>
+</section>
+<section id="projects">
+    <hr>
+    <div class="container">
+        <!-- Portfolio Section -->
+        <h1>GitHub Projects</h1>
+        <p>Here are some of my open-source projects. In fact, you are <a
+                href="https://github.com/bluzomby/massoth.tech">looking
+                at
+                one</a> right now!</p>
+
+        <div class="row">
+            {% for item in projects[:6] %}
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ item['url'] }}">{{ item['name'] }}</a>
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ item['language'] }}
+                        </h6>
+                        {% if item['description'] is not none %}
+                        <p class="card-text"> {{item['description'] }} </p>
+                        {% endif %}
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <i class="fas fa-star"></i>: {{ item['stars'] }}
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-code-branch"></i>: {{ item['forks'] }}
+                        </li>
+                        <li class="list-group-item">
+                            Most Recent Commit: {{ item['last_commit']}}
+                        </li>
+                    </ul>
+
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <i class="fa fa-star-o"></i>: {{ item['stars'] }}
-                    </li>
-                    <li class="list-group-item">
-                        <i class="fa fa-code-fork"></i>: {{ item['forks'] }}
-                    </li>
-                    <li class="list-group-item">
-                        Most Recent Commit: {{ item['last_commit']}}
-                    </li>
-                </ul>
-
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- /.row -->
+<section id="education">
+    <hr>
+    <div class="container">
+        <h1>Education</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <h2>The American International School of Kuwait</h2>
+                <small>2014-2018</small>
+            </div>
+            <div class="col-md-8">
+                <h3>International Baccalaureate Diploma</h3>
+                <p>Graduate of the International Baccalaureate Diploma Programme, widely considered one of the most
+                    rigorous and intensive high school programs, with a focus on business, physics, mathematics,
+                    information technology, and music.
+                </p>
+                <p>Graduated with honours and a GPA of 4.13.</p>
+                <p>Obtained the International Baccalaureate diploma with a final score of 34.</p>
             </div>
         </div>
-        {% endfor %}
-    </div>
-</div>
-<!-- /.row -->
-<hr>
-<div class="container" id="education">
-    <h1>Education</h1>
-    <div class="row">
-        <div class="col-md-4">
-            <h2>The American International School of Kuwait</h2>
-            <small>2014-2018</small>
-        </div>
-        <div class="col-md-8">
-            <h3>International Baccalaureate Diploma</h3>
-            <p>Graduate of the International Baccalaureate Diploma Programme, widely considered one of the most
-                rigorous and intensive high school programs, with a focus on business, physics, mathematics,
-                information technology, and music.
-            </p>
-            <p>Graduated with honours and a GPA of 4.13.</p>
-            <p>Obtained the International Baccalaureate diploma with a final score of 34.</p>
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Vrije Universiteit Amsterdam</h2>
+                <small>Expected Graduation: June 2021</small>
+            </div>
+            <div class="col-md-8">
+                <h3>BSc in Computer Science</h3>
+                <p>Currently pursuing a bachelor of science in computer science.</p>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Vrije Universiteit Amsterdam</h2>
-            <small>Expected Graduation: June 2021</small>
-        </div>
-        <div class="col-md-8">
-            <h3>BSc in Computer Science</h3>
-            <p>Currently pursuing a bachelor of science in computer science.</p>
+</section>
+
+<section id="blog">
+    <hr>
+    <div class="container">
+        <h1>Blog</h1>
+        <div class="jumbotron">
+            <h2>A work in progress, coming soon!</h1>
         </div>
     </div>
-</div>
+</section>
 
 {% endblock %}
