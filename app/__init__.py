@@ -1,7 +1,7 @@
 from flask import Flask, render_template, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-import instance.secrets as secrets
+import instance.prod_secrets as secrets
 
 db = SQLAlchemy()
 ma = Marshmallow()
@@ -12,12 +12,12 @@ def create_app():
 
     # configure database
     # PRODUCTION ONLY
-    # SQLALCHEMY_DATABASE_URI = (
-    #     'mysql+pymysql://{user}:{password}@localhost/{database}'
-    #     '?unix_socket=/cloudsql/{connection_name}').format(
-    #         user=secrets.DB_NAME, password=secrets.DB_PASS,
-    #         database=secrets.DB_NAME, connection_name=secrets.CLOUD_SQL_CONNECTION_NAME)
-    # dev database connection setup
+    SQLALCHEMY_DATABASE_URI = (
+        'mysql+pymysql://{user}:{password}@localhost/{database}'
+        '?unix_socket=/cloudsql/{connection_name}').format(
+            user=secrets.DB_NAME, password=secrets.DB_PASS,
+            database=secrets.DB_NAME, connection_name=secrets.CLOUD_SQL_CONNECTION_NAME)
+    # # dev database connection setup
     app.config['SQLALCHEMY_DATABASE_URI'] = secrets.SQLALCHEMY_DATABASE_URI
     db.init_app(app)
 
