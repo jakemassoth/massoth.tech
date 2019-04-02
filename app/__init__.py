@@ -15,7 +15,7 @@ def create_app():
     SQLALCHEMY_DATABASE_URI = (
         'mysql+pymysql://{user}:{password}@localhost/{database}'
         '?unix_socket=/cloudsql/{connection_name}').format(
-            user=secrets.DB_NAME, password=secrets.DB_PASS,
+            user=secrets.DB_USER, password=secrets.DB_PASS,
             database=secrets.DB_NAME, connection_name=secrets.CLOUD_SQL_CONNECTION_NAME)
     # # dev database connection setup
     app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
