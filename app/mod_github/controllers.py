@@ -19,8 +19,6 @@ def get_data():
     data = project_schema.dump(query).data
     return jsonify({"projects": data})
 
-# TODO: add validation of GAE cron header
-# TODO: add Github api rate limiting error handling
 # TODO: general error handling
 @mod_github.route('/run')
 def run_updater():
