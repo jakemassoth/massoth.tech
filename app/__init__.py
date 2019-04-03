@@ -19,6 +19,8 @@ def create_app():
     #         database=secrets.DB_NAME, connection_name=secrets.CLOUD_SQL_CONNECTION_NAME)
     # # dev database connection setup
     app.config['SQLALCHEMY_DATABASE_URI'] = secrets.SQLALCHEMY_DATABASE_URI
+    # disable track modifications to improve performance
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
 
     ma.init_app(app)
