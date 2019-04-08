@@ -1,12 +1,11 @@
 import dateutil.parser
+from flask import jsonify, request, abort
+import requests
+from requests_toolbelt.adapters import appengine
 from ..models import Project, ProjectSchema
 from .. import db
 from . import mod_github
-from flask import jsonify, request, abort
-import requests
 # needed to get requests to run on GAE
-from requests_toolbelt.adapters import appengine
-
 # monkey patch requests to support GAE
 appengine.monkeypatch()
 
@@ -20,6 +19,8 @@ def get_data():
     return jsonify({"projects": data})
 
 # TODO: general error handling
+
+
 @mod_github.route('/run')
 def run_updater():
     """ an endpoint to update the github project database, only intended to run 60 times a day using the GAE cron interface, more than this will lead to being locked out by the github API. Deletes all rows in the table and then re-populates them with the new data"""
