@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 # PRODUCTION ONLY
 # import prod_secrets as secrets
-import instance.secrets as secrets
+import instance.prod_secrets as secrets
 
 db = SQLAlchemy()
 ma = Marshmallow()
