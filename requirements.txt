@@ -1,13 +1,6 @@
-Flask==1.0.2
-Werkzeug>=0.14.0
-jinja2>=2.10
-Flask-SQLAlchemy>=2.3.2
-SQLAlchemy>=1.2.18
-pymysql
-flask-marshmallow
-marshmallow-sqlalchemy
+Flask
+Werkzeug
+jinja2
 requests
 requests_toolbelt
-dateutil
-Babel
 google-api-python-client

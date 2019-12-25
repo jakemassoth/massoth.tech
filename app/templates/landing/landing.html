@@ -44,7 +44,7 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a target="_blank" href="{{ item['url'] }}">{{ item['name'] }}</a>
+                                <a target="_blank" href="{{ item['html_url'] }}">{{ item['name'] }}</a>
                             </h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ item['language'] }}
                             </h6>
@@ -54,13 +54,13 @@
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <i class="fas fa-star"></i>: {{ item['stars'] }}
+                                <i class="fas fa-star"></i>: {{ item['stargazers_count'] }}
                             </li>
                             <li class="list-group-item">
-                                <i class="fas fa-code-branch"></i>: {{ item['forks'] }}
+                                <i class="fas fa-code-branch"></i>: {{ item['forks_count'] }}
                             </li>
                             <li class="list-group-item">
-                                Most Recent Commit: {{ item['last_commit']}}
+                                Most Recent Commit: {{ item['updated_at']}}
                             </li>
                         </ul>
 

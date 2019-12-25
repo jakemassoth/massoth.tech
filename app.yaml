@@ -1,6 +1,4 @@
-runtime: python27
-api_version: 1
-threadsafe: true
+runtime: python37
 
 handlers:
 - url: /robots\.txt
@@ -11,10 +9,4 @@ handlers:
   upload: googleb37aaf4171d54954\.html
 - url: /static
   static_dir: app/static
-- url: /.*
-  script: main.app
-  secure: always
 
-libraries:
-- name: ssl
-  version: latest

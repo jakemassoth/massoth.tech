@@ -10,8 +10,6 @@ from . import mod_landing
 
 @mod_landing.route('/')
 def index():
-    # MAKE SURE TO CHANGE BEFORE PRODUCTION!!!!!!!!!!!!
-    projects = requests.get("http://massoth.tech/updater/")
+    projects = requests.get("https://api.github.com/users/bluzomby/repos")
     projects = projects.json()
-    print projects['projects']
-    return render_template('landing/landing.html', projects=projects['projects'])
+    return render_template('landing/landing.html', projects=projects)
