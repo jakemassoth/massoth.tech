@@ -12,4 +12,5 @@ from . import mod_landing
 def index():
     projects = requests.get("https://api.github.com/users/bluzomby/repos")
     projects = projects.json()
+    projects = sorted(projects, key=lambda x: x['updated_at'], reverse=True)
     return render_template('landing/landing.html', projects=projects)
