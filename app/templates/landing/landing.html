@@ -46,12 +46,15 @@
                             <h5 class="card-title">
                                 <a target="_blank" href="{{ item['html_url'] }}">{{ item['name'] }}</a>
                             </h5>
+                            {% if item['language'] is not none %}
                             <h6 class="card-subtitle mb-2 text-muted">{{ item['language'] }}
+                            {% endif %}
                             </h6>
                             {% if item['description'] is not none %}
                             <p class="card-text"> {{item['description'] }} </p>
                             {% endif %}
                         </div>
+                        {% if item['stargazers_count'] is not none %}
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <i class="fas fa-star"></i>: {{ item['stargazers_count'] }}
@@ -63,6 +66,7 @@
                                 Most Recent Commit: {{ item['updated_at']}}
                             </li>
                         </ul>
+                        {% endif %}
 
                     </div>
                 </div>
