@@ -14,5 +14,13 @@ def index():
         projects = projects.json()
         projects = sorted(projects, key=lambda x: x['updated_at'], reverse=True)
     else:
-        projects = "".json()
+        projects = json.dumps({
+            "name": "",
+            "language": "",
+            "description": "",
+            "stargazers_count": "",
+            "forks_count": "",
+            "updated_at": "",
+        })
+
     return render_template('landing/landing.html', projects=projects)
