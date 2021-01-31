@@ -9,8 +9,10 @@ from . import mod_landing
 
 @mod_landing.route('/')
 def index():
-    projects = requests.get("https://api.github.com/users/bluzomby/repos")
+    projects = requests.get("https://api.github.com/users/jakemassoth/repos")
     if projects.ok:
         projects = projects.json()
         projects = sorted(projects, key=lambda x: x['updated_at'], reverse=True)
+    else:
+        projects = "".json()
     return render_template('landing/landing.html', projects=projects)
