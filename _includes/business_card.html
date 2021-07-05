@@ -1,0 +1,24 @@
+<section class="p-3 p-lg-5 d-flex flex-column justify-content-center" id="business-card">
+    <div class="w-100">
+        <h1>Jake <span class="font-weight-bold">Massoth</span></h1>
+        <h2>{{ site.business-card.job-title }}</h2>
+        <h3><small class="text-muted"><i class="fas fa-map-marker"></i> {{ site.business-card.location }} </small></h3>
+        <p class="pb-3">{{ site.business-card.personal-statement }}</p>
+        <ul class="list-group list-group-flush pb-3">
+            <li class="list-group-item list-group-item-action">
+                <a href="mailto:{{ site.email }}"><i class="fas fa-envelope"></i> {{ site.email }}</a>
+            </li>
+            <li class="list-group-item list-group-item-action">
+                <a href="tel:{{ site.business-card.phone }}"><i class="fas fa-phone">{{ site.business-card.phone }}</i></a>
+            </li>
+        </ul>
+        <div class="social-icons pl-4">
+            <a target=_blank href={{ site.linkedin-link }}>
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a target="_blank" href={{ site.github-link }}>
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+    </div>
+</section>
