@@ -1,12 +1,4 @@
-*.pyc
-# don't include third-party dependencies.
-!lib/README.md
-.DS_Store
-env/*
-lib/*
-static/googleb37aaf4171d54954.html
-Colorschemes.txt
-.vscode
-.vscode/*
-instance
-instance/*
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
