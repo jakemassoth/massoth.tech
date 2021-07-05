@@ -4,14 +4,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Software developer Jake Massoth's website and blog">
+  <meta name="description" content={{ site.description }}>
   <meta name="author" content="Jake Massoth">
 
 
-  <title>Jake Massoth: Portfolio</title>
+  <title>{{ site.title }}</title>
 
 
-
+ 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -19,7 +19,7 @@
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 
-  <link href="/static/css/style.css" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 
 <body data-spy="scroll" data-target=".navbar" id="page-top" data-offset="10">
@@ -35,7 +35,7 @@
       <ul class="nav navbar-nav flex-column nav-pills nav-fill">
         <a class="nav-link nav-item navbar-brand d-block" href="#page-top">Jake Massoth</span></a>
         <span class="nav-item d-lg-block">
-          <img id="profile" class="img-fluid img-profile rounded-circle mx-auto mb-2" src="static/img/profile.jpeg"
+          <img id="profile" class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/assets/img/profile.jpeg"
             alt="Profile Picture">
         </span>
         <li class="nav-item">
@@ -56,9 +56,7 @@
     </div>
   </nav>
 
-  {% block content %}
-
-  {% endblock %}
+  {{ content }}
 
 
   <!-- Footer -->
@@ -75,7 +73,7 @@
   </div>
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Jake Massoth 2019</p>
+      <p class="m-0 text-center text-white">Copyright &copy; {{ site.author }} {{ "now" | date: "%Y" }}</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -88,7 +86,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
     integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
   </script>
-  <script src="/static/js/main.js"></script>
+  <script src="/assets/js/main.js"></script>
 </body>
 
 </html>

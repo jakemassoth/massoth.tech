@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: 
-User-agent: *
-Disallow: /static/*
-User-agent: *
-Disallow: /updater/*

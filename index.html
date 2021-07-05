@@ -1,28 +1,28 @@
-{% extends "layout.html" %}
+---
+layout: default
+title: Home
+---
 
-{% block content %}
 <div class="container-fluid p-0">
     <section class="p-3 p-lg-5 d-flex flex-column justify-content-center" id="business-card">
         <div class="w-100">
             <h1>Jake <span class="font-weight-bold">Massoth</span></h1>
-            <h2>Full-stack developer</h2>
-            <h3><small class="text-muted"><i class="fas fa-map-marker"></i> Amsterdam, The
-                    Netherlands</small></h3>
-            <p class="pb-3">Hi, my name is Jake and I am an American Computer Science student. I aim to build software
-                that positively affects millions of people's lives.</p>
+            <h2>{{ site.business-card.job-title }}</h2>
+            <h3><small class="text-muted"><i class="fas fa-map-marker"></i> {{ site.business-card.location }} </small></h3>
+            <p class="pb-3">{{ site.business-card.personal-statement }}</p>
             <ul class="list-group list-group-flush pb-3">
                 <li class="list-group-item list-group-item-action">
-                    <a href="mailto:jake@massoth.tech"><i class="fas fa-envelope"></i> jake@massoth.tech</a>
+                    <a href="mailto:{{ site.email }}"><i class="fas fa-envelope"></i> {{ site.email }}</a>
                 </li>
                 <li class="list-group-item list-group-item-action">
-                    <a href="tel:+31-06-11241990"><i class="fas fa-phone"></i>+31-06-11241990</a>
+                    <a href="tel:{{ site.business-card.phone }}"><i class="fas fa-phone">{{ site.business-card.phone }}</i></a>
                 </li>
             </ul>
             <div class="social-icons pl-4">
-                <a target=_blank href="https://www.linkedin.com/in/jakemassoth/">
+                <a target=_blank href={{ site.linkedin-link }}>
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a target="_blank" href="https://github.com/jakemassoth">
+                <a target="_blank" href={{ site.github-link }}>
                     <i class="fab fa-github"></i>
                 </a>
             </div>
@@ -38,40 +38,6 @@
                     at
                     one</a> right now!</p>
 
-            <div class="row">
-                {% for item in projects[:6] %}
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a target="_blank" href="{{ item['html_url'] }}">{{ item['name'] }}</a>
-                            </h5>
-                            {% if item['language'] is not none %}
-                            <h6 class="card-subtitle mb-2 text-muted">{{ item['language'] }}
-                            {% endif %}
-                            </h6>
-                            {% if item['description'] is not none %}
-                            <p class="card-text"> {{item['description'] }} </p>
-                            {% endif %}
-                        </div>
-                        {% if item['stargazers_count'] is not none %}
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <i class="fas fa-star"></i>: {{ item['stargazers_count'] }}
-                            </li>
-                            <li class="list-group-item">
-                                <i class="fas fa-code-branch"></i>: {{ item['forks_count'] }}
-                            </li>
-                            <li class="list-group-item">
-                                Most Recent Commit: {{ item['updated_at']}}
-                            </li>
-                        </ul>
-                        {% endif %}
-
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
         </div>
     </section>
     <!-- /.row -->
@@ -169,5 +135,3 @@
         </div>
     </section>
 </div>
-
-{% endblock %}

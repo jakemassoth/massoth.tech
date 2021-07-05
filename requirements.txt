@@ -1,6 +1,0 @@
-Flask
-Werkzeug
-jinja2
-requests
-requests_toolbelt
-google-api-python-client

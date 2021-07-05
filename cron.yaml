@@ -1,4 +1,0 @@
-cron:
-- description: "refresh github projects"
-  url: /updater/run
-  schedule: every 1 day 
