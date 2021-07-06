@@ -7,6 +7,16 @@
                 href="https://github.com/jakemassoth/massoth.tech">looking
                 at
                 one</a> right now!</p>
+        
+        <div class="row" id="github-projects">
+
+        </div>
 
     </div>
 </section>
+
+<script src="/assets/js/github_projects.js"></script>
+<script>
+    var username = "{{ site.github_username }}";
+    getGithubProjects(username, insertProjectsHTML);
+</script>
