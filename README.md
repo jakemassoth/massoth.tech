@@ -1,12 +1,25 @@
 # [massoth.tech](https://www.massoth.tech/)
 ## Code and resources of my personal website
-This is the repository containing most of the code that runs on my personal website, [massoth.tech](https://www.massoth.tech/). What you see in this repo under the `master` branch is what is currently running on my website. You can see what I am working on on the `develop` branch.
-## Repository Structure
-In the base directory, general Google app-engine related files can be found. The main entry point, `main.py` can also be found here. The modules are located inside of the `app/` directory along with the templates and static files. 
-## Installation and Running
-`pip` and `python3` are required. After cloning the repository, navigate into it and run `pip install -t lib -r requirements.txt`. This installs all the requirements locally into `lib/`.<sup>[1](#footnote)</sup> You can then run a dev server with `main.py`. 
-## Stack
-The website is a Flask deployment on Python 3.7, using Jinja2 templates for most of the frontend. It is hosted on Google App Engine.
+This repo contains the resources for my personal website. It is a static website built using [Jekyll](https://jekyllrb.com/), hosted on [Firebase](https://firebase.google.com/) and deployed automatically using Github actions.
 
+## Building and serving
+Requires [Ruby](https://www.ruby-lang.org/en/) and [Bundler](https://bundler.io/)
 
-<a name="footnote"><sup>1</sup></a>: you may need to create this directory manually with `mkdir lib`. 
+Clone the repo:
+
+```
+git clone https://github.com/jakemassoth/massoth.tech.git
+```
+
+Install dependencies in gemfile:
+
+```
+cd massoth.tech
+bundle install
+```
+
+Run the built-in Jekyll server locally:
+
+```
+bundle exec jekyll serve
+```
