@@ -14,6 +14,11 @@ function getGithubProjects(username, cb) {
 function insertProjectsHTML(xhttp) {
     var projectsJSON = JSON.parse(xhttp.responseText);
 
+    // sort by most recently commited to on Github
+    projectsJSON = projectsJSON.sort((function (a, b) {
+        return new Date(b.updated_at) - new Date(a.updated_at); 
+    }));
+
     var projectDivs = [];
 
     Object.keys(projectsJSON).forEach(function(key) {
@@ -25,9 +30,9 @@ function insertProjectsHTML(xhttp) {
                                 <h5 class="card-title">
                                     <a target="_blank" href="${projectsJSON[key].html_url}">${projectsJSON[key].name}</a>
                                 </h5>
-                                <h6 class="card-subtitle mb-2 text-muted">${projectsJSON[key].language}
+                                <h6 class="card-subtitle mb-2 text-muted">${projectsJSON[key].language != null ? projectsJSON[key].language : ''}
                                 </h6>
-                                <p class="card-text"> ${projectsJSON[key].description} </p>
+                                <p class="card-text"> ${ projectsJSON[key].description != null ? projectsJSON[key].description : '' } </p>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
