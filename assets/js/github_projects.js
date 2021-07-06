@@ -24,6 +24,10 @@ function insertProjectsHTML(xhttp) {
     var projectDivs = [];
 
     Object.keys(projectsJSON).forEach(function(key) {
+        // Pretty-print the UTC date
+        var date = new Date(projectsJSON[key].updated_at);
+        var dateString = date.toDateString();
+
         var html = `<div class="col-lg-4 col-sm-6 portfolio-item">
                         <div class="card h-100">
                             <div class="card-body">
@@ -42,7 +46,7 @@ function insertProjectsHTML(xhttp) {
                                     <i class="fas fa-code-branch"></i>: ${projectsJSON[key].forks_count}
                                 </li>
                                 <li class="list-group-item">
-                                    Most Recent Commit: ${projectsJSON[key].updated_at}
+                                    Most Recent Commit: ${dateString}
                                 </li>
                             </ul>
                         </div>
