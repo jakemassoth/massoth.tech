@@ -1,9 +1,10 @@
 function getGithubProjects(username, cb) {
+    "use strict";
     var xhttp = new XMLHttpRequest();
-    var url = "https://api.github.com/users/" + username + "/repos";
+    var url = `https://api.github.com/users/${username}/repos`;
 
     xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState === 4 && this.status === 200) {
           cb(this);
         }
      };
@@ -12,6 +13,7 @@ function getGithubProjects(username, cb) {
 }
 
 function insertProjectsHTML(xhttp) {
+    "use strict";
     var projectsJSON = JSON.parse(xhttp.responseText);
 
     // sort by most recently commited to on Github
@@ -22,17 +24,15 @@ function insertProjectsHTML(xhttp) {
     var projectDivs = [];
 
     Object.keys(projectsJSON).forEach(function(key) {
-        console.log(key, projectsJSON[key]);
-
         var html = `<div class="col-lg-4 col-sm-6 portfolio-item">
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     <a target="_blank" href="${projectsJSON[key].html_url}">${projectsJSON[key].name}</a>
                                 </h5>
-                                <h6 class="card-subtitle mb-2 text-muted">${projectsJSON[key].language != null ? projectsJSON[key].language : ''}
+                                <h6 class="card-subtitle mb-2 text-muted">${projectsJSON[key].language !== null ? projectsJSON[key].language : ''}
                                 </h6>
-                                <p class="card-text"> ${ projectsJSON[key].description != null ? projectsJSON[key].description : '' } </p>
+                                <p class="card-text"> ${ projectsJSON[key].description !== null ? projectsJSON[key].description : '' } </p>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
@@ -46,12 +46,12 @@ function insertProjectsHTML(xhttp) {
                                 </li>
                             </ul>
                         </div>
-                    </div>`
+                    </div>`;
         
         projectDivs.push(html);
 
     });
 
 
-    document.getElementById("github-projects").innerHTML = projectDivs.join("\n")
+    document.getElementById("github-projects").innerHTML = projectDivs.join("\n");
 }
