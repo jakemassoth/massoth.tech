@@ -46,7 +46,7 @@ function insertProjectsHTML(xhttp) {
                                     <i class="fas fa-code-branch"></i>: ${projectsJSON[key].forks_count}
                                 </li>
                                 <li class="list-group-item">
-                                    Most Recent Commit: ${dateString}
+                                    Last Commit: ${dateString}
                                 </li>
                             </ul>
                         </div>
