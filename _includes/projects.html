@@ -13,10 +13,11 @@
         </div>
 
     </div>
-</section>
+</section> 
 
 <script src="/assets/js/github_projects.js"></script>
 <script>
     var username = "{{ site.github_username }}";
-    getGithubProjects(username, insertProjectsHTML);
+    var url = "{{ site.github_service_url }} ";
+    getGithubProjects(url, username, insertProjectsHTML);
 </script>
