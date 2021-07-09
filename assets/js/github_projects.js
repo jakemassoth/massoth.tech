@@ -1,49 +1,53 @@
-function getGithubProjects(username, cb) {
+function getGithubProjects(url, username, cb) {
     "use strict";
+
     var xhttp = new XMLHttpRequest();
-    var url = `https://api.github.com/users/${username}/repos`;
+    var reqURL = url + `?username=${username}`;
+    reqURL = reqURL.split(" ").join("");
 
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
           cb(this);
         }
      };
-      xhttp.open("GET", url, true);
+      xhttp.open("GET", reqURL, true);
       xhttp.send();
 }
 
 function insertProjectsHTML(xhttp) {
     "use strict";
+
     var projectsJSON = JSON.parse(xhttp.responseText);
 
     // sort by most recently commited to on Github
     projectsJSON = projectsJSON.sort((function (a, b) {
-        return new Date(b.updated_at) - new Date(a.updated_at); 
+        return new Date(b.node.pushedAt) - new Date(a.node.pushedAt); 
     }));
 
     var projectDivs = [];
 
-    Object.keys(projectsJSON).forEach(function(key) {
-        // Pretty-print the UTC date
-        var date = new Date(projectsJSON[key].updated_at);
+    projectsJSON.forEach((item) => {
+        // Pretty-print the UTC timestamp
+        item = item.node;
+        var date = new Date(item.pushedAt);
         var dateString = date.toDateString();
 
         var html = `<div class="col-lg-4 col-sm-6 portfolio-item">
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a target="_blank" href="${projectsJSON[key].html_url}">${projectsJSON[key].name}</a>
+                                    <a target="_blank" href="${item.url}">${item.name}</a>
                                 </h5>
-                                <h6 class="card-subtitle mb-2 text-muted">${projectsJSON[key].language !== null ? projectsJSON[key].language : ''}
+                                <h6 class="card-subtitle mb-2 text-muted">${item.primaryLanguage !== null ? item.primaryLanguage.name : ''}
                                 </h6>
-                                <p class="card-text"> ${ projectsJSON[key].description !== null ? projectsJSON[key].description : '' } </p>
+                                <p class="card-text"> ${ item.description !== null ? item.description : '' } </p>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
-                                    <i class="fas fa-star"></i>: ${projectsJSON[key].stargazers_count}
+                                    <i class="fas fa-star"></i>: ${item.stargazerCount}
                                 </li>
                                 <li class="list-group-item">
-                                    <i class="fas fa-code-branch"></i>: ${projectsJSON[key].forks_count}
+                                    <i class="fas fa-code-branch"></i>: ${item.forkCount}
                                 </li>
                                 <li class="list-group-item">
                                     Last Commit: ${dateString}
@@ -53,7 +57,6 @@ function insertProjectsHTML(xhttp) {
                     </div>`;
         
         projectDivs.push(html);
-
     });
 
 
