@@ -63,7 +63,7 @@ const projects = await getCollection("projects").then((projects) =>
     grid-template-columns: 45% 45%;
   }
   .project {
-    border: 1px solid #4f4f4f;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 10px 20px;
     display: flex;
@@ -82,11 +82,11 @@ const projects = await getCollection("projects").then((projects) =>
   }
   .styled-link {
     text-decoration: none;
-    border: 1px solid #4f4f4f;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 4px;
     margin-right: 10px;
-    color: #4f4f4f;
+    color: var(--text-color);
   }
   .project-body {
     display: flex;
