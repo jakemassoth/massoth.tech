@@ -28,3 +28,8 @@ pnpm-debug.log*
 
 # vercel
 .vercel/
+
+
+# Added by cargo
+
+/target
