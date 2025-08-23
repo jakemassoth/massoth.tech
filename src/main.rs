@@ -92,13 +92,13 @@ impl ProjectEntry {
                 div class="project-front" {
                     h3 {(self.data.title)}
                     div class="project-body" {(PreEscaped(self.body.clone()))}
-                    div class="project-links" {
-                        @if let Some(link) = &self.data.article {
-                            a class="styled-link" href=(link) {("Article")}
-                        } @else if let Some(link) = &self.data.repo {
-                            a class="styled-link" href=(link) {("Repo")}
-                        } @else { ("") }
-                    }
+                }
+                div class="project-links" {
+                    @if let Some(link) = &self.data.article {
+                        a class="styled-link" href=(link) {("Article")}
+                    } @else if let Some(link) = &self.data.repo {
+                        a class="styled-link" href=(link) {("Repo")}
+                    } @else { ("") }
                 }
             }
         }
@@ -127,7 +127,6 @@ fn get_projects() -> Result<Vec<ProjectEntry>, std::io::Error> {
         .filter_map(|entry| {
             let e = entry.ok()?;
             let path = e.path();
-            println!("{}", path.display());
 
             if path.extension() == Some(OsStr::new("md")) {
                 fs::read_to_string(path).ok()

@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: build-site
+        name: build the site
+        entry: nix run .#
+        language: system
+        pass_filenames: false
+        always_run: true
