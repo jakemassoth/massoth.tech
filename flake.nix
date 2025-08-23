@@ -2,26 +2,49 @@
   inputs = {
     naersk.url = "github:nix-community/naersk/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    utils.url = "github:numtide/flake-utils";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs = {
     self,
-    nixpkgs,
-    utils,
+    flake-utils,
     naersk,
+    nixpkgs,
   }:
-    utils.lib.eachDefaultSystem (
+    flake-utils.lib.eachDefaultSystem (
       system: let
-        pkgs = import nixpkgs {inherit system;};
-        naersk-lib = pkgs.callPackage naersk {};
+        pkgs = (import nixpkgs) {
+          inherit system;
+        };
+
+        naersk' = pkgs.callPackage naersk {};
+        src = ./.;
+        bin = naersk'.buildPackage {inherit src;};
       in {
-        defaultPackage = naersk-lib.buildPackage ./.;
-        devShell = with pkgs;
-          mkShell {
-            buildInputs = [corepack nodejs cargo rustc rustfmt pre-commit rustPackages.clippy static-web-server];
-            RUST_SRC_PATH = rustPlatform.rustLibSrc;
+        packages = {
+          default = bin;
+          check = naersk'.buildPackage {
+            inherit src;
+            mode = "check";
           };
+          test = naersk'.buildPackage {
+            inherit src;
+            mode = "test";
+          };
+          clippy = naersk'.buildPackage {
+            inherit src;
+            mode = "clippy";
+          };
+          dev = pkgs.writeShellScriptBin "dev" ''
+            ${bin}/bin/massoth-tech-rs;
+            ${pkgs.lib.getExe pkgs.http-server} ./dist -c-1;
+          '';
+        };
+
+        devShell = pkgs.mkShell {
+          nativeBuildInputs = with pkgs; [rustc cargo corepack nodejs cargo rustc rustfmt pre-commit rustPackages.clippy http-server];
+          RUST_SRC_PATH = pkgs.rustPlatform.rustLibSrc;
+        };
       }
     );
 }

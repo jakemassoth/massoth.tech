@@ -452,6 +452,7 @@ dependencies = [
  "comrak",
  "gray_matter",
  "maud",
+ "serde",
 ]
 
 [[package]]
