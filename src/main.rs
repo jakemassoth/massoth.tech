@@ -7,25 +7,25 @@ use serde::Deserialize;
 
 fn base_layout(title: &str, content: Markup) -> Markup {
     html! {
-    (DOCTYPE)
-    head {
-        meta charset="utf-8" {}
-        link rel="icon" type="image/svg+xml" href="/public/favicon.svg" {}
-        link rel="stylesheet" type="text/css" href="/public/main.css" {}
-        meta name="viewport" content="width=device-width, initial-scale=1.0" {}
-        title { (title) }
-    }
+        (DOCTYPE)
+        head {
+            meta charset="utf-8" {}
+            link rel="icon" type="image/svg+xml" href="/public/favicon.svg" {}
+            link rel="stylesheet" type="text/css" href="/public/main.css" {}
+            meta name="viewport" content="width=device-width, initial-scale=1.0" {}
+            title { (title) }
+        }
 
-    body {
-        main {
-            div class="nav" {
-                a href="/" {( "Home" )}
-                a href="/blog" {("Blog")}
-                a href="/about" {("About")}
-            }
-            }
-            content {
-                (content)
+        body {
+            main {
+                div class="nav" {
+                    a href="/" {( "Home" )}
+                    a href="/blog" {("Blog")}
+                    a href="/about" {("About")}
+                }
+                content {
+                    (content)
+                }
             }
         }
     }
@@ -105,17 +105,25 @@ impl ProjectEntry {
     }
 }
 
-fn main() -> Result<(), std::io::Error> {
-    // Copy files around
+fn setup_dist_dir() -> Result<(), std::io::Error> {
     if fs::exists("./dist").unwrap_or_default() {
         fs::remove_dir_all("./dist")?;
     }
     fs::create_dir_all("./dist/public")?;
     fs::copy("./public/main.css", "./dist/public/main.css")?;
     fs::copy("./public/favicon.svg", "./dist/public/favicon.svg")?;
+    Ok(())
+}
 
-    // render the main page
-    let mut entries_sorted = fs::read_dir("./content/projects")?
+fn get_projects() -> Result<Vec<ProjectEntry>, std::io::Error> {
+    let mut entries_sorted = fs::read_dir("./content/projects")
+        .map_err(|e| {
+            eprintln!(
+                "Failed to read projects directory: {}. make sure ./content/projects exists.",
+                e
+            );
+            e
+        })?
         .filter_map(|entry| {
             let e = entry.ok()?;
             let path = e.path();
@@ -124,6 +132,7 @@ fn main() -> Result<(), std::io::Error> {
             if path.extension() == Some(OsStr::new("md")) {
                 fs::read_to_string(path).ok()
             } else {
+                eprintln!("failed to read path {}", path.display());
                 None
             }
         })
@@ -132,12 +141,21 @@ fn main() -> Result<(), std::io::Error> {
 
     entries_sorted.sort_by_key(|entry| entry.data.year);
     entries_sorted.reverse();
+    Ok(entries_sorted)
+}
 
-    let entries = entries_sorted
+fn main() -> Result<(), std::io::Error> {
+    setup_dist_dir()?;
+
+    let projects_markup = get_projects()?
         .into_iter()
         .map(|entry| entry.to_markup())
         .collect::<Vec<Markup>>();
 
-    fs::write("./dist/index.html", index_page(entries).into_string())?;
+    fs::write(
+        "./dist/index.html",
+        index_page(projects_markup).into_string(),
+    )?;
+
     Ok(())
 }
