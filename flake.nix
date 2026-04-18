@@ -41,7 +41,7 @@
           '';
         };
 
-        devShell = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [rustc cargo rustfmt pre-commit rustPackages.clippy http-server];
           RUST_SRC_PATH = pkgs.rustPlatform.rustLibSrc;
         };
